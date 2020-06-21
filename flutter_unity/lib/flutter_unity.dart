@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_unity_platform_interface/flutter_unity_platform_interface.dart';
 
-import 'dart:html' as html;
-import 'dart:ui' as ui;
+import 'unity_widget_mobile.dart' if (dart.library.html) 'unity_widget_web.dart' as multiPlatform;
 
-import 'custom_html_view.dart';
 
 class UnityViewController {
   UnityViewController._(
@@ -106,33 +104,7 @@ class _UnityViewState extends State<UnityView> {
 
   @override
   Widget build(BuildContext context) {
-    if (kIsWeb) {
-      // ignore: undefined_prefixed_name
-      ui.platformViewRegistry.registerViewFactory(
-          'unity_view',
-          (int id) => html.IFrameElement()
-            ..width = MediaQuery.of(context).size.width.toString()
-            ..height = MediaQuery.of(context).size.height.toString()
-            ..src = 'UnityExport/index.html'
-            ..style.border = 'none');
-      return CustomHtmlElementView(viewType: 'unity_view', onPlatformViewCreated: onPlatformViewCreated);
-    }
-    switch (defaultTargetPlatform) {
-      case TargetPlatform.android:
-        return AndroidView(
-          viewType: 'unity_view',
-          onPlatformViewCreated: onPlatformViewCreated,
-        );
-        break;
-      case TargetPlatform.iOS:
-        return UiKitView(
-          viewType: 'unity_view',
-          onPlatformViewCreated: onPlatformViewCreated,
-        );
-        break;
-      default:
-        throw UnsupportedError('Unsupported platform: $defaultTargetPlatform');
-    }
+    return multiPlatform.UnityWidget(onPlatformViewCreated: onPlatformViewCreated,);
   }
 
   void onPlatformViewCreated(int id) {

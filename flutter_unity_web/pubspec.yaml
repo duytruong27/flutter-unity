@@ -1,5 +1,5 @@
-name: flutter_unity
-description: A Flutter plugin for embedding Unity projects in Flutter projects.
+name: flutter_unity_web
+description: A Flutter web plugin for embedding Unity projects in browser.
 # Although semantic versioning doesn’t promise any compatibility between
 # versions prior to 1.0.0, the Dart community convention is to treat those
 # versions semantically as well. The interpretation of each number is just
@@ -21,6 +21,9 @@ dependencies:
   io: ^0.3.4
   flutter_unity_platform_interface: 
     path: ../flutter_unity_platform_interface
+  flutter_web_plugins:
+    sdk: flutter
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -33,11 +36,9 @@ flutter:
   # adding or updating assets for this project.
   plugin:
     platforms:
-      android:
-        package: com.glartek.flutter_unity
+      web:
         pluginClass: FlutterUnityPlugin
-      ios:
-        pluginClass: FlutterUnityPlugin
+        fileName: flutter_unity_web.dart
       
 
   # To add assets to your plugin package, add an assets section, like this:
