@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../../flutter_unity_platform_interface/flutter_unity_platform_interface.dart';
+import 'package:flutter_unity_platform_interface/flutter_unity_platform_interface.dart';
 
 import 'dart:html' as html;
 import 'dart:ui' as ui;
