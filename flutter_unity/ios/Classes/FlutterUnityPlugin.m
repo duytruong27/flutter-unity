@@ -17,7 +17,7 @@ void UfwLoad()
     }
     gUfw = [[bundle principalClass] getInstance];
     if (![gUfw appController]) {
-        [gUfw setExecuteHeader: &_mh_execute_header];
+//        [gUfw setExecuteHeader: &_mh_execute_header];
     }
 }
 
@@ -131,6 +131,7 @@ NSMutableArray * gViews;
                 nil];
             NSError * error;
             NSData * jsonData = [NSJSONSerialization dataWithJSONObject: jsonObject options: kNilOptions error: &error];
+            NSLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
             if (!jsonData && error) {
                 NSLog(@"%@", [error localizedDescription]);
                 result([FlutterError errorWithCode: [NSString stringWithFormat: @"%ld", (long)[error code]]

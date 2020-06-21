@@ -2,6 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../flutter_unity_platform_interface/flutter_unity_platform_interface.dart';
+
+import 'dart:html' as html;
+import 'dart:ui' as ui;
+
+import 'custom_html_view.dart';
+
 class UnityViewController {
   UnityViewController._(
     UnityView view,
@@ -32,11 +39,11 @@ class UnityViewController {
   }
 
   void pause() {
-    _channel.invokeMethod('pause');
+    FlutterUnityPlatform.instance.pause();
   }
 
   void resume() {
-    _channel.invokeMethod('resume');
+    FlutterUnityPlatform.instance.resume();
   }
 
   void send(
@@ -44,11 +51,7 @@ class UnityViewController {
     String methodName,
     String message,
   ) {
-    _channel.invokeMethod('send', {
-      'gameObjectName': gameObjectName,
-      'methodName': methodName,
-      'message': message,
-    });
+    FlutterUnityPlatform.instance.send(gameObjectName, methodName, message);
   }
 }
 
@@ -104,6 +107,17 @@ class _UnityViewState extends State<UnityView> {
 
   @override
   Widget build(BuildContext context) {
+    if (kIsWeb) {
+      // ignore: undefined_prefixed_name
+      ui.platformViewRegistry.registerViewFactory(
+          'unity_view',
+          (int id) => html.IFrameElement()
+            ..width = MediaQuery.of(context).size.width.toString()
+            ..height = MediaQuery.of(context).size.height.toString()
+            ..src = 'UnityExport/index.html'
+            ..style.border = 'none');
+      return CustomHtmlElementView(viewType: 'unity_view', onPlatformViewCreated: onPlatformViewCreated);
+    }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return AndroidView(
