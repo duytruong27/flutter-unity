@@ -2,11 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:webview_flutter/webview_flutter.dart';
-
 import 'dart:html' as html;
 import 'dart:ui' as ui;
-
 
 class UnityWidget extends StatefulWidget {
   final PlatformViewCreatedCallback onPlatformViewCreated;
@@ -36,7 +33,8 @@ class _UnityWidgetState extends State<UnityWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Webview();
+    return HtmlElementView(
+      viewType: viewId,
+    );
   }
 }
-
