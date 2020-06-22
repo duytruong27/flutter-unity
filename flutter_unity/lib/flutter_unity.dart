@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_unity_platform_interface/flutter_unity_platform_interface.dart';
+import 'package:flutter_unity_platform_interface/method_channel_flutter_unity.dart';
 
 import 'unity_widget_mobile.dart' if (dart.library.html) 'unity_widget_web.dart'
     as multiPlatform;
@@ -10,13 +11,12 @@ class UnityViewController {
   UnityViewController._(
     UnityView view,
     int id,
-  )   : _view = view,
-        _channel = MethodChannel('unity_view_$id') {
-    _channel.setMethodCallHandler(_methodCallHandler);
+  ) : _view = view {
+    MethodChannelFlutterUnity.channel = MethodChannel('unity_view_$id');
+    MethodChannelFlutterUnity.channel.setMethodCallHandler(_methodCallHandler);
   }
 
   UnityView _view;
-  final MethodChannel _channel;
 
   Future<dynamic> _methodCallHandler(MethodCall call) async {
     switch (call.method) {
@@ -96,9 +96,9 @@ class _UnityViewState extends State<UnityView> {
   @override
   void dispose() {
     if (defaultTargetPlatform == TargetPlatform.iOS) {
-      controller?._channel?.invokeMethod('dispose');
+      MethodChannelFlutterUnity.channel.invokeMethod('dispose');
     }
-    controller?._channel?.setMethodCallHandler(null);
+    MethodChannelFlutterUnity.channel.setMethodCallHandler(null);
     super.dispose();
   }
 
