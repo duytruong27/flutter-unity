@@ -16,7 +16,6 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  webview_flutter: ^0.3.22+1
   flutter:
     sdk: flutter
   io: ^0.3.4
