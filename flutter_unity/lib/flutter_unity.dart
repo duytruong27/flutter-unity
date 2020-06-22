@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_unity_platform_interface/flutter_unity_platform_interface.dart';
 
-import 'unity_widget_mobile.dart' if (dart.library.html) 'unity_widget_web.dart' as multiPlatform;
-
+import 'unity_widget_mobile.dart' if (dart.library.html) 'unity_widget_web.dart'
+    as multiPlatform;
 
 class UnityViewController {
   UnityViewController._(
@@ -104,7 +104,9 @@ class _UnityViewState extends State<UnityView> {
 
   @override
   Widget build(BuildContext context) {
-    return multiPlatform.UnityWidget(onPlatformViewCreated: onPlatformViewCreated,);
+    return multiPlatform.UnityWidget(
+      onPlatformViewCreated: onPlatformViewCreated,
+    );
   }
 
   void onPlatformViewCreated(int id) {

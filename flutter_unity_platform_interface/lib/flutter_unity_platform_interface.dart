@@ -9,16 +9,16 @@ import 'method_channel_flutter_unity.dart';
 /// platform implementations that `implements` this interface will be broken by newly added
 /// [FlutterUnityPlatform] methods.
 abstract class FlutterUnityPlatform extends PlatformInterface {
-  /// Constructs a UrlLauncherPlatform.
+  /// Constructs a FlutterUnityPlatform.
   FlutterUnityPlatform() : super(token: _token);
 
   static final Object _token = Object();
 
-  static FlutterUnityPlatform _instance = MethodChannelUrlLauncher();
+  static FlutterUnityPlatform _instance = MethodChannelFlutterUnity();
 
-  /// The default instance of [UrlLauncherPlatform] to use.
+  /// The default instance of [FlutterUnityPlatform] to use.
   ///
-  /// Defaults to [MethodChannelUrlLauncher].
+  /// Defaults to [MethodChannelFlutterUnity].
   static FlutterUnityPlatform get instance => _instance;
 
   /// Platform-specific plugins should set this with their own platform-specific
