@@ -19,7 +19,7 @@ A Flutter plugin for embedding Unity projects in Flutter projects.
   s.platform = :ios, '8.0'
 
   # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
-  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS[sdk=iphonesimulator*]' => 'x86_64' }
+  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS' => 'arm64 arm64e' }
 
   s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(inherited) "${PODS_CONFIGURATION_BUILD_DIR}"', 'OTHER_LDFLAGS' => '$(inherited) -framework UnityFramework' }
 end
