@@ -15,14 +15,15 @@ class UnityWidget extends StatefulWidget {
 }
 
 class _UnityWidgetState extends State<UnityWidget> {
-  String viewId = 'unity_view';
+  static int id = 0;
 
   @override
   void initState() {
+    id += 1;
     print('init state for unity view');
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
-        viewId,
+        'unity_view_$id',
         (int id) => html.IFrameElement()
           ..id = 'unity_view'
           ..width = MediaQuery.of(context).size.width.toString()
@@ -37,7 +38,7 @@ class _UnityWidgetState extends State<UnityWidget> {
   Widget build(BuildContext context) {
     print('Web unity view');
     return HtmlElementView(
-      viewType: viewId,
+      viewType: 'unity_view_$id',
     );
   }
 }
