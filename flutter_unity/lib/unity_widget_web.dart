@@ -19,10 +19,12 @@ class _UnityWidgetState extends State<UnityWidget> {
 
   @override
   void initState() {
+    print('init state for unity view');
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
         viewId,
         (int id) => html.IFrameElement()
+          ..id = 'unity_view'
           ..width = MediaQuery.of(context).size.width.toString()
           ..height = MediaQuery.of(context).size.height.toString()
           ..src = 'UnityExport/index.html'
@@ -33,6 +35,7 @@ class _UnityWidgetState extends State<UnityWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print('Web unity view');
     return HtmlElementView(
       viewType: viewId,
     );

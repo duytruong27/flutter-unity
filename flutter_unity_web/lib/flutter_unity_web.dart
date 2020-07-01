@@ -10,12 +10,12 @@ class FlutterUnityPlugin extends FlutterUnityPlatform {
 
   @override
   void pause() {
-    // js.context.callMethod('pause');
+    js.context.callMethod('pause');
   }
 
   @override
   void resume() {
-    // js.context.callMethod('resume');
+    js.context.callMethod('resume');
   }
 
   @override
