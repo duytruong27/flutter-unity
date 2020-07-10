@@ -20,7 +20,6 @@ class _UnityWidgetState extends State<UnityWidget> {
   @override
   void initState() {
     id += 1;
-    print('init state for unity view');
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
         'unity_view_$id',
@@ -36,7 +35,6 @@ class _UnityWidgetState extends State<UnityWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print('Web unity view');
     return HtmlElementView(
       viewType: 'unity_view_$id',
     );
