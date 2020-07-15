@@ -27,7 +27,7 @@ class _UnityWidgetState extends State<UnityWidget> {
           ..id = 'unity_view'
           ..width = MediaQuery.of(context).size.width.toString()
           ..height = MediaQuery.of(context).size.height.toString()
-          ..src = 'UnityExport/index.html'
+          ..src = 'UnityExport/index_unity.html'
           ..style.border = 'none');
 
     super.initState();
